@@ -103,6 +103,16 @@ public:
         return res != nullptr;
     }
 
+    bool operator==(const SharedPointer &other) const
+    {
+        return res == other.res;
+    }
+
+    bool operator!=(const SharedPointer &other) const
+    {
+        return res != other.res;
+    }
+
     ~SharedPointer()
     {
         releaseResource();
