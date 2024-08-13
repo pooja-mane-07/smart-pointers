@@ -7,6 +7,9 @@ project(SmartPointers)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# Enable testing for the project
+enable_testing()
+
 # Add subdirectories
 add_subdirectory(shared-pointer)
 add_subdirectory(unique-pointer)
