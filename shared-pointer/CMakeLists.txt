@@ -8,25 +8,22 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Add the main executable
-add_executable(shared_ptr src/main.cpp)
+add_executable(shared_ptr_exe src/main.cpp)
 
 # Include directories for the main application
-target_include_directories(shared_ptr PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(shared_ptr_exe PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-# Fetch GoogleTest
-include(FetchContent)
-FetchContent_Declare(
-  gtest
-  GIT_REPOSITORY https://github.com/google/googletest
-  GIT_TAG release-1.12.1
-)
-FetchContent_MakeAvailable(gtest)
+# Add tests
+enable_testing()
 
-# Add the test executable
-add_executable(test_shared_ptr tests/test_shared_ptr.cpp)
+# Find GoogleTest package
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
 
-# Include directories for the test executable
-target_include_directories(test_shared_ptr PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+# Add test executable
+add_executable(shared_ptr_test tests/test_shared_ptr.cpp)
+target_include_directories(shared_ptr_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_link_libraries(shared_ptr_test PRIVATE ${GTEST_LIBRARIES} gtest_main)
 
-# Link test executable against GoogleTest and pthread
-target_link_libraries(test_shared_ptr PRIVATE gtest gtest_main pthread)
+# Register the test with CTest
+add_test(NAME SharedPointerTests COMMAND shared_ptr_test)

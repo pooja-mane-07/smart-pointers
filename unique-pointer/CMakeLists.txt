@@ -1,32 +1,29 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Project name
-project(SmartPointers)
+project(UniquePointer)
 
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Add the main executable
-add_executable(unique_ptr src/main.cpp)
+add_executable(unique_ptr_exe src/main.cpp)
 
 # Include directories for the main application
-target_include_directories(unique_ptr PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(unique_ptr_exe PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-# Fetch GoogleTest
-include(FetchContent)
-FetchContent_Declare(
-  gtest
-  GIT_REPOSITORY https://github.com/google/googletest
-  GIT_TAG release-1.12.1
-)
-FetchContent_MakeAvailable(gtest)
+# Add tests
+enable_testing()
 
-# Add the test executable
-add_executable(test_unique_ptr tests/test_unique_ptr.cpp)
+# Find GoogleTest package
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
 
-# Include directories for the test executable
-target_include_directories(test_unique_ptr PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+# Add test executable
+add_executable(unique_ptr_test tests/test_unique_ptr.cpp)
+target_include_directories(unique_ptr_test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_link_libraries(unique_ptr_test PRIVATE ${GTEST_LIBRARIES} gtest_main)
 
-# Link test executable against GoogleTest and pthread
-target_link_libraries(test_unique_ptr PRIVATE gtest gtest_main pthread)
+# Register the test with CTest
+add_test(NAME UniquePointerTests COMMAND unique_ptr_test)

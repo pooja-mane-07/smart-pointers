@@ -1,6 +1,5 @@
 # Ignore build directories
-/unique-pointer/build/
-/shared-pointer/build/
+/build
 
 # Ignore VS Code workspace settings
 .vscode/
