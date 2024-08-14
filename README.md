@@ -53,14 +53,14 @@ After building the project, you can run the example executables directly. From t
 
 ## Running the tests
 
-**To run the unit tests for both smart pointers, use the following command from the build directory:**
+To run the unit tests for both smart pointers, use the following command from the `build` directory:
    ```sh
    ctest --output-on-failure --verbose
    ```
 
 ## Running individual tests
 
-**To run the unit tests for each smart pointer individually, use the following commands from the build directory:**
+To run the unit tests for each smart pointer individually, use the following commands from the `build` directory:
 
 * For `SharedPointer`:
   ```sh
