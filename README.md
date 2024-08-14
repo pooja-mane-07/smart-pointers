@@ -1,29 +1,15 @@
 # Smart Pointers
 
-This project provides a custom implementation of smart pointers in C++. Currently, it includes the implementation of a unique smart pointer: `UniquePointer`. Future plans include additional smart pointers, such as `SharedPointer`.
+This project includes custom implementations of two fundamental smart pointers in C++: `SharedPointer` and `UniquePointer`. These implementations provide functionality similar to `std::shared_ptr` and `std::unique_ptr` in the C++ Standard Library.
 
 ## Project Structure
 
-- `include/`: Contains header files for smart pointer implementations.
-  - `unique_ptr.h`: Implementation of the `UniquePointer`.
+- **`shared-pointer/`**: Contains the implementation and tests for the `SharedPointer`.
 
-- `src/`: Contains application and example files.
-  - `main.cpp`: Example usage of the `UniquePointer`.
+- **`unique-pointer/`**: Contains the implementation and tests for the `UniquePointer`.
 
-- `tests/`: Contains unit tests for the smart pointers.
-  - `test_unique_ptr.cpp`: Unit tests for the `UniquePointer`.
+- **`CMakeLists.txt`**: Top-level CMake configuration file that includes the subdirectories for building the `SharedPointer` and `UniquePointer`.
 
-- `CMakeLists.txt`: CMake configuration file for building the project.
-
-## Features
-
-- **`UniquePointer`**: A custom implementation of a unique smart pointer that supports:
-  - Default constructor
-  - Parameterized constructor
-  - Move constructor
-  - Move assignment operator
-  - Reset method
-  - Conversion to `bool` for validity checking
 
 ## Requirements
 
@@ -36,7 +22,6 @@ This project provides a custom implementation of smart pointers in C++. Currentl
 1. **Clone the repository:**
    ```sh
    git clone https://github.com/pooja-mane-07/smart-pointers.git
-   cd smart-pointers
 
 2. **Create a build directory and navigate to it:**
     ```sh
@@ -51,8 +36,38 @@ This project provides a custom implementation of smart pointers in C++. Currentl
     ```sh
     make
 
+
+## Running the Executables
+
+After building the project, you can run the example executables directly. From the `build` directory, use the following commands:
+
+* For `SharedPointer`:
+  ```sh
+  ./shared_ptr_exe
+  ```
+
+* For `UniquePointer`:
+  ```sh
+  ./unique_ptr_exe
+  ```
+
 ## Running the tests
 
-**To run the unit tests, use the following command from the build directory::**
+**To run the unit tests for both smart pointers, use the following command from the build directory:**
    ```sh
-   ./test_unique_ptr
+   ctest --output-on-failure --verbose
+   ```
+
+## Running individual tests
+
+**To run the unit tests for each smart pointer individually, use the following commands from the build directory:**
+
+* For `SharedPointer`:
+  ```sh
+  ./shared-pointer/shared_ptr_test
+  ```
+
+* For `UniquePointer`:
+  ```sh
+  ./unique-pointer/unique_ptr_test
+  ```
